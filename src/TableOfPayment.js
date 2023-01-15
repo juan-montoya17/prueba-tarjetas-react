@@ -1,12 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
-const TableOfPayment = () => {
-    const [cards, setCards]=useState([]);
-    useEffect(() => {
-        let cards = JSON.parse(localStorage.getItem("cards"));
-        setCards(cards);
-    }, []);
-    console.log(cards);
+const TableOfPayment = ({cards}) => {
     return(<table className="table table-striped table-dark">
         <thead>
         <tr>
@@ -16,8 +10,8 @@ const TableOfPayment = () => {
         </tr>
         </thead>
         <tbody>
-        {cards.map((card)=><tr>
-            <td>{card.number}</td>
+        {cards.map((card,i)=><tr key={i}>
+            <td>{"**** **** **** "+ card.number.substring(card.number.length-4)}</td>
             <td>{card.name}</td>
             <td>{card.expiry}</td>
         </tr>)}
